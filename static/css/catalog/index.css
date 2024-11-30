@@ -1,0 +1,156 @@
+* {
+    color: #FFF0E0;
+}
+
+.slider {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.slider-wrapper {
+    display: flex;
+    grid-gap: 1em;
+    overflow: hidden;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.slider-wrapper>.inner {
+    display: flex;
+    grid-gap: 1.5em;
+    transition: all 1s ease-in-out;
+}
+
+.card {
+    width: 500px;
+    height: 250px;
+}
+
+.card>img {
+    display: flex;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+    object-position: bottom right;
+}
+
+.card>.content {
+    background: #0a2640;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+    padding: 1em;
+    text-align: center;
+}
+
+.card>.content>h1,
+.card>.content>h3 {
+    margin: 0.35em 0;
+}
+
+.card>.content>h1 {
+    color: #fff;
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.card>.content>h3 {
+    color: #ccc;
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+.map {
+    margin-top: 1em;
+}
+
+.map>button {
+    all: unset;
+    background: #ffffff;
+    cursor: pointer;
+    margin: 0 0.125em;
+    position: relative;
+    user-select: none;
+    border-radius: 100%;
+    height: 1em;
+    width: 1em;
+}
+
+.map>button.active:after {
+    background: #000000;
+    content: "";
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    border-radius: 100%;
+    height: 0.5em;
+    width: 0.5em;
+}
+
+.title {
+    font-size: 2.5rem;
+    display: flex;
+    text-align: center;
+    margin: 3% auto;
+}
+
+.catalog-grid {
+    display: flex;
+    width: 60%;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5%;
+}
+
+.catalog-item {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    margin-bottom: 10%;
+    cursor: pointer;
+}
+
+.catalog_item__image {
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.catalog_item__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2%;
+    gap: 3px;
+}
+
+.catalog_item__text__title {
+    font-size: 1.2rem;
+    font-weight: 200;
+}
+
+.catalog_item__text__price {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 3%;
+}
+
+.catalog_item__count {
+    color: #676767;
+    font-size: 0.9rem;
+}
+
+.catalog_item__text__current_price {
+    font-size: 1.8rem;
+}
+
+.catalog_item__text__old_price {
+    font: 1rem;
+    color: #676767;
+    text-decoration: line-through;
+}

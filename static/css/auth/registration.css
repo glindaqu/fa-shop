@@ -1,0 +1,40 @@
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 20%;
+    margin: 3% auto 0 auto;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-weight: 200;
+    width: 100%;
+}
+
+.text {
+    margin-left: 5px;
+    font-size: 0.85rem;
+}
+
+input {
+    padding: 2% 5%;
+    border-radius: 5px;
+    border: none;
+    background-color: #FFF0E0;
+}
+
+.user_placeholder {
+    width: 42px;
+}
+
+.submit_form {
+    margin-top: 30px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
