@@ -42,6 +42,13 @@
                         <div class="item_info__text_block__material">Материал: 100% сталь</div>
                     </div>
                 </div>
+                <div class="add_feedback">
+                    <div class="add_feedback__title">Добавить отзыв</div>
+                    <form action="" class="add_feedback__form">
+                        <input type="text" name="text" class="add_feedback__feedback" placeholder="Опишите товар">
+                        <input type="submit" class="add_feedback__submit">
+                    </form>
+                </div>
                 <div class="item_feedbacks">
                     <div class="item_feedbacks__title">Отзывы</div>
                     <div class="item_feedbacks_grid">
