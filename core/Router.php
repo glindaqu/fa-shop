@@ -2,6 +2,7 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/core/controllers/AuthorizeController.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/core/controllers/CatalogController.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/core/controllers/CartController.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/core/View.php";
 
 class Router
