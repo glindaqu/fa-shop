@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация</title>
+    <title>Авторизация</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/auth/registration.css">
 </head>
@@ -12,7 +12,7 @@
 <body>
     <div class="wrapper">
         <div class="container">
-            <form action="/fa-shop-app/authorize/login" method="post">
+            <form action="/authorize/login" method="post">
                 <img src="/static/svg/user.svg" alt="" class="user_placeholder">
                 <label>
                     <div class="text">Адрес эл. почты</div>

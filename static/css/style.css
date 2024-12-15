@@ -22,6 +22,10 @@ body {
     background-color: black;
 }
 
+input {
+    color: black;
+}
+
 .header_logo {
     margin: 2%;
 }
