@@ -50,7 +50,7 @@ class Database
         $result = [];
         $data = $this->db->query(query: 'SELECT * FROM item');
         while ($row = $data->fetch_assoc()) {
-            $result[] = $row;   
+            $result[] = $row;
         }
         return count($result) == 0 ? null : $result;
     }
@@ -62,5 +62,33 @@ class Database
         $st->execute();
         $result = $st->get_result()->fetch_assoc();
         return $result;
+    }
+
+    # region cart
+    public function add_to_cart(int $item_id, int $count): void
+    {
+        $st = $this->db->prepare('INSERT INTO cart(user_id, item_id, items_count) VALUES (?, ?, ?)');
+        $st->bind_param('iii', $_COOKIE['client_id'], $item_id, $count);
+        $st->execute();
+    }
+
+    public function delete_from_cart(int $item_id): void
+    {
+        $st = $this->db->prepare('DELETE FROM cart WHERE user_id = ? AND item_id = ?');
+        $st->bind_param('ii', $_COOKIE['client_id'], $item_id);
+        $st->execute();
+    }
+
+    public function get_cart_by_client(): ?array
+    {
+        $st = $this->db->prepare('SELECT * FROM cart WHERE user_id = ?');
+        $st->bind_param('i', $_COOKIE['client_id']);
+        $st->execute();
+        $result = $st->get_result();
+        $arr = [];
+        while ($item = $result->fetch_assoc()){
+            $arr[] = $item;
+        }
+        return count($arr) == 0 ? null : $arr;
     }
 }

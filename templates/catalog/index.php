@@ -54,7 +54,7 @@
             <div class="title">Каталог</div>
             <div class="catalog-grid">
                 <?php foreach ($items as $item) { ?>
-                    <a href="item/id=<?= $item['id'] ?>" class="catalog-item">
+                    <a href="/catalog/item/id=<?= $item['id'] ?>" class="catalog-item">
                         <img class="catalog_item__image" src="/static/img/items/<?= $item['image'] ?>"></img>
                         <div class="catalog_item__text">
                             <div class="catalog_item__text__title"> <?= $item['title'] ?> </div>

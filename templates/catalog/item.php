@@ -31,10 +31,11 @@
                             </div>
                             <div class="item_info__text_block__price_old"><?= $item['price'] ?>₽</div>
                         </div>
-                        <form action="" class="add_to_cart">
+                        <form action="/catalog/add_to_cart" class="add_to_cart" method="post">
+                            <input type="hidden" name="item_id" value="<?= $item['id'] ?>">
                             <div class="counter">
                                 <button id="less" type="button" class="less">-</button>
-                                <div id="count" class="count">1</div>
+                                <input id="count" name="count" class="count" value="1" readonly/>
                                 <button id="more" type="button" class="more">+</button>
                             </div>
                             <input type="submit" value="В корзину" class="submit">
@@ -114,14 +115,14 @@
     });
 
     document.getElementById('less').addEventListener('click', () => {
-        if (counter.innerText > 1) {
-            counter.innerText--;
+        if (counter.value > 1) {
+            counter.value--;
         }
     });
 
     document.getElementById('more').addEventListener('click', () => {
-        if (counter.innerText < maxCount) {
-            counter.innerText++;
+        if (counter.value < maxCount) {
+            counter.value++;
         }
     });
 

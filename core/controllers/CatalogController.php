@@ -38,4 +38,18 @@ class CatalogController extends Controller
 
         $this->view->item($item);   
     }
+
+    public function add_to_cart(): void {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            die();
+        }
+
+        $count = $_POST['count'];
+        $item_id = $_POST['item_id'];
+
+        $this->db->add_to_cart($item_id, $count);
+
+        header('location: http://fa-shop-app/catalog');
+        exit;
+    }
 }

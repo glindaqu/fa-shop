@@ -18,79 +18,64 @@
             </div>
             <div class="content_wrapper">
                 <div class="content">
-                    <div class="content_item">
-                        <div class="image_wrapper">
-                            <img src="/static/img/slider_content/1.png" alt="" class="content_item__image">
-                        </div>
-                        <div class="content_item__text_section">
-                            <div class="content_item__title">Набор из 7 кубиков для DnD</div>
-                            <div class="content_item__article">Артикул: METAL-DICE</div>
-                            <div class="content_item__price">
-                                <div class="content_item__price_current">960 р.</div>
-                                <div class="content_item__price_old">1 199 р.</div>
+                    <?php foreach ($items as $item) { ?>
+                        <div class="content_item">
+                            <div class="image_wrapper">
+                                <img src="/static/img/items/<?= $item['image'] ?>" alt="" class="content_item__image">
                             </div>
-                        </div>
-                        <div class="counter">
-                            <div class="plus">+</div>
-                            <div class="count">1</div>
-                            <div class="minus">-</div>
-                        </div>
-                        <div class="content_item__price_block">
-                            <div class="content_item__price_block__price">960 р.</div>
-                            <div class="content_item__price_block__count">1шт.</div>
-                        </div>
-                        <div class="delete">X</div>
-                    </div>
-                    <div class="content_item">
-                        <div class="image_wrapper">
-                            <img src="/static/img/slider_content/1.png" alt="" class="content_item__image">
-                        </div>
-                        <div class="content_item__text_section">
-                            <div class="content_item__title">Набор из 7 кубиков для DnD</div>
-                            <div class="content_item__article">Артикул: METAL-DICE</div>
-                            <div class="content_item__price">
-                                <div class="content_item__price_current">960 р.</div>
-                                <div class="content_item__price_old">1 199 р.</div>
+                            <div class="content_item__text_section">
+                                <div class="content_item__title"><?= $item['title'] ?></div>
+                                <div class="content_item__article">Артикул: <?= $item['article'] ?></div>
+                                <div class="content_item__price">
+                                    <div class="content_item__price_current">
+                                        <?= round($item['price'] * (1 - $item['discount'] / 100)) ?>₽
+                                    </div>
+                                    <div class="content_item__price_old"><?= $item['price'] ?>₽</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="counter">
-                            <div class="plus">+</div>
-                            <div class="count">1</div>
-                            <div class="minus">-</div>
-                        </div>
-                        <div class="content_item__price_block">
-                            <div class="content_item__price_block__price">960 р.</div>
-                            <div class="content_item__price_block__count">1шт.</div>
-                        </div>
-                        <div class="delete">X</div>
-                    </div>
-                    <div class="content_item">
-                        <div class="image_wrapper">
-                            <img src="/static/img/slider_content/1.png" alt="" class="content_item__image">
-                        </div>
-                        <div class="content_item__text_section">
-                            <div class="content_item__title">Набор из 7 кубиков для DnD</div>
-                            <div class="content_item__article">Артикул: METAL-DICE</div>
-                            <div class="content_item__price">
-                                <div class="content_item__price_current">960 р.</div>
-                                <div class="content_item__price_old">1 199 р.</div>
+                            <div class="counter">
+                                <div id="more<?= $item['id'] ?>" class="plus" readonly>+</div>
+                                <div id="count<?= $item['id'] ?>" class="count"><?= $item['ordered_count'] ?></div>
+                                <div id="less<?= $item['id'] ?>" class="minus" readonly>-</div>
                             </div>
+                            <div class="content_item__price_block">
+                                <div class="content_item__price_block__price">
+                                    <?= round($item['price'] * (1 - $item['discount'] / 100)) ?>₽
+                                </div>
+                                <div class="content_item__price_block__count"><?= $item['ordered_count'] ?>шт.</div>
+                            </div>
+                            <form action="/cart/delete" method="post">
+                                <input type="hidden" value="<?= $item['id'] ?>" name="item_id">
+                                <button class="delete">X</button>
+                            </form>
                         </div>
-                        <div class="counter">
-                            <div class="plus">+</div>
-                            <div class="count">1</div>
-                            <div class="minus">-</div>
-                        </div>
-                        <div class="content_item__price_block">
-                            <div class="content_item__price_block__price">960 р.</div>
-                            <div class="content_item__price_block__count">1шт.</div>
-                        </div>
-                        <div class="delete">X</div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
+<script>
+
+    let maxCount = <?= $item['count'] ?>;
+    let itemsCount = <?= count($items) ?>;
+
+    for (let i = 1; i <= itemsCount; i++) {
+        let counter = document.getElementById(`count${i}`);
+
+        document.getElementById(`less${i}`).addEventListener('click', () => {
+            if (counter.innerText > 1) {
+                counter.innerText--;
+            }
+        });
+
+        document.getElementById(`more${i}`).addEventListener('click', () => {
+            if (counter.innerText < maxCount) {
+                counter.innerText++;
+            }
+        });
+    }
+</script>
 
 </html>

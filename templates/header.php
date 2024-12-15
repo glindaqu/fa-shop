@@ -3,10 +3,14 @@
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/core/controllers/AuthorizeController.php'; ?>
 
 <header>
-    <div class="header_logo">
+    <a class="header_logo" href="/catalog">
         <img src="/static/svg/logo.svg" alt="">
-    </div>
+    </a>
     <?php if (AuthorizeController::has_auth()) { ?>
+        <div class="navigation">
+            <a href="/catalog">Каталог</a>
+            <a href="/cart">Корзина</a>
+        </div>
         <a href="/authorize/logout">Выйти</a>
     <?php } ?>
 </header>

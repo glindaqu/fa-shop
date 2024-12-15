@@ -83,14 +83,20 @@
     justify-content: space-between;
     border: 2px solid #FEF1E1;
     background-color: black;
-    width: 10%;
     border-radius: 5px;
     padding: 0 2%;
+    width: 20%;
 }
 
 .count {
     font-size: 0.7rem;
     font-weight: 300;
+    display: flex;
+    background-color: black;
+    border: none;
+    color: #FEF1E1;
+    text-align: center;
+    width: 50%;
 }
 
 .more,
