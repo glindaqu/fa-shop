@@ -28,6 +28,7 @@
 
 .item_info__image_switcher_item {
     width: 13%;
+    cursor: pointer;
 }
 
 .item_info__text_block {
@@ -196,7 +197,7 @@
     display: flex;
     gap: 2%;
     height: max-content;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     margin-top: 2%;
@@ -214,7 +215,7 @@
     border: 1px solid white;
     border-radius: 7px;
     background-color: black;
-    width: 10%;
+    width: fit-content;
     padding: 5px;
     cursor: pointer;
     color: white;

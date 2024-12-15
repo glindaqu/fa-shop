@@ -15,10 +15,9 @@
             <div class="item_container">
                 <div class="item_info">
                     <div class="item_info__image_block">
-                        <img class="item_info__image_main" src="/static/img/slider_content/<?= $item['image'] ?>">
+                        <img id="main_image" class="item_info__image_main"
+                            src="/static/img/slider_content/<?= $item['image'] ?>">
                         <div class="item_info__image_switcher">
-                            <img src="/static/img/slider_content/1.png" alt="" class="item_info__image_switcher_item">
-                            <img src="/static/img/slider_content/1.png" alt="" class="item_info__image_switcher_item">
                             <img src="/static/img/slider_content/1.png" alt="" class="item_info__image_switcher_item">
                         </div>
                     </div>
@@ -34,9 +33,9 @@
                         </div>
                         <form action="" class="add_to_cart">
                             <div class="counter">
-                                <button type="button" class="less">-</button>
-                                <div class="count">1</div>
-                                <button type="button" class="more">+</button>
+                                <button id="less" type="button" class="less">-</button>
+                                <div id="count" class="count">1</div>
+                                <button id="more" type="button" class="more">+</button>
                             </div>
                             <input type="submit" value="В корзину" class="submit">
                         </form>
@@ -99,5 +98,33 @@
         </div>
     </div>
 </body>
+
+<script>
+
+    let mainImage = document.getElementById('main_image');
+    let maxCount = <?= $item['count'] ?>;
+    let counter = document.getElementById('count');
+
+    document.querySelectorAll('.item_info__image_switcher_item').forEach(item => {
+        item.addEventListener('click', () => {
+            let newSrc = item.src;
+            item.src = mainImage.src;
+            mainImage.src = newSrc;
+        });
+    });
+
+    document.getElementById('less').addEventListener('click', () => {
+        if (counter.innerText > 1) {
+            counter.innerText--;
+        }
+    });
+
+    document.getElementById('more').addEventListener('click', () => {
+        if (counter.innerText < maxCount) {
+            counter.innerText++;
+        }
+    });
+
+</script>
 
 </html>
