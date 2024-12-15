@@ -28,6 +28,10 @@ input {
     color: black;
 }
 
+button {
+    cursor: pointer;
+}
+
 .header_logo {
     margin: 2%;
 }

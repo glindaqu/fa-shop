@@ -108,6 +108,7 @@
     font-size: 0.7rem;
     padding: 1.5% 4%;
     background-color: #FEF1E1;
+    cursor: pointer;
 }
 
 .item_info__text_block__material,
@@ -216,4 +217,5 @@
     width: 10%;
     padding: 5px;
     cursor: pointer;
+    color: white;
 }

@@ -53,50 +53,21 @@
             </div>
             <div class="title">Каталог</div>
             <div class="catalog-grid">
-                <div class="catalog-item">
-                    <img class="catalog_item__image" src="/static/img/slider_content/1.png"></img>
-                    <div class="catalog_item__text">
-                        <div class="catalog_item__text__title">Набор из 7 кубиков для DnD</div>
-                        <div class="catalog_item__text__price">
-                            <div class="catalog_item__text__current_price">960 р.</div>
-                            <div class="catalog_item__text__old_price">1 199 р.</div>
+                <?php foreach ($items as $item) { ?>
+                    <a href="item/id=<?= $item['id'] ?>" class="catalog-item">
+                        <img class="catalog_item__image" src="/static/img/items/<?= $item['image'] ?>"></img>
+                        <div class="catalog_item__text">
+                            <div class="catalog_item__text__title"> <?= $item['title'] ?> </div>
+                            <div class="catalog_item__text__price">
+                                <div class="catalog_item__text__current_price">
+                                    <?= round($item['price'] * (1 - $item['discount'] / 100)) ?>₽
+                                </div>
+                                <div class="catalog_item__text__old_price"> <?= $item['price'] ?>₽ </div>
+                            </div>
+                            <div class="catalog_item__count">осталось <?= $item['count'] ?> шт.</div>
                         </div>
-                        <div class="catalog_item__count">осталось 11 шт.</div>
-                    </div>
-                </div>
-                <div class="catalog-item">
-                    <img class="catalog_item__image" src="/static/img/slider_content/1.png"></img>
-                    <div class="catalog_item__text">
-                        <div class="catalog_item__text__title">Набор из 7 кубиков для DnD</div>
-                        <div class="catalog_item__text__price">
-                            <div class="catalog_item__text__current_price">960 р.</div>
-                            <div class="catalog_item__text__old_price">1 199 р.</div>
-                        </div>
-                        <div class="catalog_item__count">осталось 11 шт.</div>
-                    </div>
-                </div>
-                <div class="catalog-item">
-                    <img class="catalog_item__image" src="/static/img/slider_content/1.png"></img>
-                    <div class="catalog_item__text">
-                        <div class="catalog_item__text__title">Набор из 7 кубиков для DnD</div>
-                        <div class="catalog_item__text__price">
-                            <div class="catalog_item__text__current_price">960 р.</div>
-                            <div class="catalog_item__text__old_price">1 199 р.</div>
-                        </div>
-                        <div class="catalog_item__count">осталось 11 шт.</div>
-                    </div>
-                </div>
-                <div class="catalog-item">
-                    <img class="catalog_item__image" src="/static/img/slider_content/1.png"></img>
-                    <div class="catalog_item__text">
-                        <div class="catalog_item__text__title">Набор из 7 кубиков для DnD</div>
-                        <div class="catalog_item__text__price">
-                            <div class="catalog_item__text__current_price">960 р.</div>
-                            <div class="catalog_item__text__old_price">1 199 р.</div>
-                        </div>
-                        <div class="catalog_item__count">осталось 11 шт.</div>
-                    </div>
-                </div>
+                    </a>
+                <?php } ?>
             </div>
         </div>
     </div>

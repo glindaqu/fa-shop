@@ -4,7 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/core/View.php";
 
 class CatalogView extends View
 {
-    public function index(): void
+    public function index(array $items): void
     {
         ob_start();
         require $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';

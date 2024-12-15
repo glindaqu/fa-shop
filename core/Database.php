@@ -22,11 +22,13 @@ class Database
     }
 
     # region client
-    public function insert_client(string $email, string $password): void {
+    public function insert_client(string $email, string $password): void
+    {
         $this->db->query("INSERT INTO client(email, password) VALUES ('$email', '$password')");
     }
 
-    public function get_client(?int $id, ?string $email, ?string $password): ?array {
+    public function get_client(?int $id, ?string $email, ?string $password): ?array
+    {
         $result = null;
         if ($id != null) {
             $st = $this->db->prepare("SELECT * FROM client WHERE id = ? LIMIT 1");
@@ -39,6 +41,26 @@ class Database
             $st->execute();
             $result = $st->get_result()->fetch_assoc();
         }
+        return $result;
+    }
+
+    # region item
+    public function get_items(): ?array
+    {
+        $result = [];
+        $data = $this->db->query(query: 'SELECT * FROM item');
+        while ($row = $data->fetch_assoc()) {
+            $result[] = $row;   
+        }
+        return count($result) == 0 ? null : $result;
+    }
+
+    public function get_item(int $id): ?array
+    {
+        $st = $this->db->prepare("SELECT * FROM item WHERE id = ? LIMIT 1");
+        $st->bind_param("i", $id);
+        $st->execute();
+        $result = $st->get_result()->fetch_assoc();
         return $result;
     }
 }

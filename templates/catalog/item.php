@@ -15,7 +15,7 @@
             <div class="item_container">
                 <div class="item_info">
                     <div class="item_info__image_block">
-                        <img class="item_info__image_main" src="/static/img/slider_content/1.png">
+                        <img class="item_info__image_main" src="/static/img/slider_content/<?= $item['image'] ?>">
                         <div class="item_info__image_switcher">
                             <img src="/static/img/slider_content/1.png" alt="" class="item_info__image_switcher_item">
                             <img src="/static/img/slider_content/1.png" alt="" class="item_info__image_switcher_item">
@@ -23,23 +23,25 @@
                         </div>
                     </div>
                     <div class="item_info__text_block">
-                        <div class="item_info__text_block__title">Набор из 7 кубиков для DnD</div>
-                        <div class="item_info__text_block__article">Артикул: METAL-DICE</div>
+                        <div class="item_info__text_block__title"> <?= $item['title'] ?> </div>
+                        <div class="item_info__text_block__article">Артикул: <?= $item['article'] ?></div>
                         <div class="item_info__text_block__rate">★5.0</div>
                         <div class="item_info__text_block__price">
-                            <div class="item_info__text_block__price_new">960 р.</div>
-                            <div class="item_info__text_block__price_old">1 199 р.</div>
+                            <div class="item_info__text_block__price_new">
+                                <?= round($item['price'] * (1 - $item['discount'] / 100)) ?>₽
+                            </div>
+                            <div class="item_info__text_block__price_old"><?= $item['price'] ?>₽</div>
                         </div>
                         <form action="" class="add_to_cart">
                             <div class="counter">
-                                <button class="less">-</button>
+                                <button type="button" class="less">-</button>
                                 <div class="count">1</div>
-                                <button class="more">+</button>
+                                <button type="button" class="more">+</button>
                             </div>
                             <input type="submit" value="В корзину" class="submit">
                         </form>
-                        <div class="item_info__text_block__description">Набор дайсов для различных настольных ролевых игр</div>
-                        <div class="item_info__text_block__material">Материал: 100% сталь</div>
+                        <div class="item_info__text_block__description"><?= $item['description'] ?></div>
+                        <div class="item_info__text_block__material">Материал: <?= $item['material'] ?></div>
                     </div>
                 </div>
                 <div class="add_feedback">
@@ -58,7 +60,10 @@
                                     <div class="item_feedbacks_item__customer">Вадим</div>
                                     <div class="item_feedbacks_item__mark">★★★★★</div>
                                 </div>
-                                <div class="item_feedbacks_item__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam totam fugit quam omnis accusantium esse, ut odit, non laudantium ullam, nam nesciunt? Vitae magnam cupiditate laboriosam, illum debitis qui id!</div>
+                                <div class="item_feedbacks_item__text">Lorem ipsum dolor sit amet consectetur,
+                                    adipisicing elit. Veniam totam fugit quam omnis accusantium esse, ut odit, non
+                                    laudantium ullam, nam nesciunt? Vitae magnam cupiditate laboriosam, illum debitis
+                                    qui id!</div>
                             </div>
                             <div class="item_feedbacks_item__date">26.01.22</div>
                         </div>
@@ -68,7 +73,10 @@
                                     <div class="item_feedbacks_item__customer">Вадим</div>
                                     <div class="item_feedbacks_item__mark">★★★★★</div>
                                 </div>
-                                <div class="item_feedbacks_item__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam totam fugit quam omnis accusantium esse, ut odit, non laudantium ullam, nam nesciunt? Vitae magnam cupiditate laboriosam, illum debitis qui id!</div>
+                                <div class="item_feedbacks_item__text">Lorem ipsum dolor sit amet consectetur,
+                                    adipisicing elit. Veniam totam fugit quam omnis accusantium esse, ut odit, non
+                                    laudantium ullam, nam nesciunt? Vitae magnam cupiditate laboriosam, illum debitis
+                                    qui id!</div>
                             </div>
                             <div class="item_feedbacks_item__date">26.01.22</div>
                         </div>
@@ -78,7 +86,10 @@
                                     <div class="item_feedbacks_item__customer">Вадим</div>
                                     <div class="item_feedbacks_item__mark">★★★★★</div>
                                 </div>
-                                <div class="item_feedbacks_item__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam totam fugit quam omnis accusantium esse, ut odit, non laudantium ullam, nam nesciunt? Vitae magnam cupiditate laboriosam, illum debitis qui id!</div>
+                                <div class="item_feedbacks_item__text">Lorem ipsum dolor sit amet consectetur,
+                                    adipisicing elit. Veniam totam fugit quam omnis accusantium esse, ut odit, non
+                                    laudantium ullam, nam nesciunt? Vitae magnam cupiditate laboriosam, illum debitis
+                                    qui id!</div>
                             </div>
                             <div class="item_feedbacks_item__date">26.01.22</div>
                         </div>
