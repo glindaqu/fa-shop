@@ -12,16 +12,20 @@ class AuthorizeController extends Controller
         $this->view = new AuthorizeView();
     }
 
+    public function login(): void {
+        $this->view->login();
+    }
+
     public function register(): void
     {
         $this->view->register();
     }
 
-    public static function has_auth(): int
+    public static function has_auth(): bool
     {
         if (isset($_COOKIE['user_id'])) {
-            return 1;
+            return true;
         }
-        return 0;
+        return false;
     }
 }

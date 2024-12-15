@@ -15,10 +15,6 @@
             <form action="/fa-shop-app/authorize/register" method="post">
                 <img src="/static/svg/user.svg" alt="" class="user_placeholder">
                 <label>
-                    <div class="text">Имя акканута</div>
-                    <input type="text" class="account_name" name="account_name">
-                </label>
-                <label>
                     <div class="text">Адрес эл. почты</div>
                     <input type="email" class="email" name="email">
                 </label>
@@ -31,6 +27,7 @@
                     <input type="password" class="password" name="password_again">
                 </label>
                 <input type="submit" class="submit_form" value="Продолжить">
+                <a href="/authorize/login">Уже есть аккаунт?</a>
             </form>
         </div>
     </div>
