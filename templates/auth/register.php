@@ -12,7 +12,7 @@
 <body>
     <div class="wrapper">
         <div class="container">
-            <form action="/fa-shop-app/authorize/register" method="post">
+            <form action="/authorize/register" method="post">
                 <img src="/static/svg/user.svg" alt="" class="user_placeholder">
                 <label>
                     <div class="text">Адрес эл. почты</div>
