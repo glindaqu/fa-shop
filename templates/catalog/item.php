@@ -24,7 +24,7 @@
                     <div class="item_info__text_block">
                         <div class="item_info__text_block__title"> <?= $item['title'] ?> </div>
                         <div class="item_info__text_block__article">Артикул: <?= $item['article'] ?></div>
-                        <div class="item_info__text_block__rate">★5.0</div>
+                        <div class="item_info__text_block__rate">★<?= $rate ?></div>
                         <div class="item_info__text_block__price">
                             <div class="item_info__text_block__price_new">
                                 <?= round($item['price'] * (1 - $item['discount'] / 100)) ?>₽
@@ -35,7 +35,7 @@
                             <input type="hidden" name="item_id" value="<?= $item['id'] ?>">
                             <div class="counter">
                                 <button id="less" type="button" class="less">-</button>
-                                <input id="count" name="count" class="count" value="1" readonly/>
+                                <input id="count" name="count" class="count" value="1" readonly />
                                 <button id="more" type="button" class="more">+</button>
                             </div>
                             <input type="submit" value="В корзину" class="submit">
@@ -46,53 +46,45 @@
                 </div>
                 <div class="add_feedback">
                     <div class="add_feedback__title">Добавить отзыв</div>
-                    <form action="" class="add_feedback__form">
+                    <form action="/catalog/add_feedback" class="add_feedback__form" method="post">
                         <input type="text" name="text" class="add_feedback__feedback" placeholder="Опишите товар">
                         <input type="submit" class="add_feedback__submit">
+                        <input type="hidden" name="rate" value="" id="rate">
+                        <input type="hidden" name="item_id" value="<?= $item['id'] ?>">
                     </form>
+                    <div class="add_feedback__rate">
+                        <div class="add_feedback__rate_item">★</div>
+                        <div class="add_feedback__rate_item">★</div>
+                        <div class="add_feedback__rate_item">★</div>
+                        <div class="add_feedback__rate_item">★</div>
+                        <div class="add_feedback__rate_item">★</div>
+                    </div>
                 </div>
                 <div class="item_feedbacks">
                     <div class="item_feedbacks__title">Отзывы</div>
                     <div class="item_feedbacks_grid">
-                        <div class="item_feedbacks_item">
-                            <div class="item_feedbacks_item_container">
-                                <div class="item_feedbacks_item__row">
-                                    <div class="item_feedbacks_item__customer">Вадим</div>
-                                    <div class="item_feedbacks_item__mark">★★★★★</div>
+                        <?php if ($feedback) { ?>
+                            <?php foreach ($feedback as $f) { ?>
+                                <div class="item_feedbacks_item">
+                                    <div class="item_feedbacks_item_container">
+                                        <div class="item_feedbacks_item__row">
+                                            <div class="item_feedbacks_item__customer"><?= $f['username'] ?></div>
+                                            <div class="item_feedbacks_item__mark">
+                                                <?php
+                                                for ($i = 0; $i < $f['rate']; $i++) {
+                                                    echo '★';
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="item_feedbacks_item__text"><?= $f['content'] ?></div>
+                                    </div>
+                                    <div class="item_feedbacks_item__date">
+                                        <?= DateTime::createFromFormat('Y-m-d H:i:s', $f['date'])->format('d.m.Y') ?>
+                                    </div>
                                 </div>
-                                <div class="item_feedbacks_item__text">Lorem ipsum dolor sit amet consectetur,
-                                    adipisicing elit. Veniam totam fugit quam omnis accusantium esse, ut odit, non
-                                    laudantium ullam, nam nesciunt? Vitae magnam cupiditate laboriosam, illum debitis
-                                    qui id!</div>
-                            </div>
-                            <div class="item_feedbacks_item__date">26.01.22</div>
-                        </div>
-                        <div class="item_feedbacks_item">
-                            <div class="item_feedbacks_item_container">
-                                <div class="item_feedbacks_item__row">
-                                    <div class="item_feedbacks_item__customer">Вадим</div>
-                                    <div class="item_feedbacks_item__mark">★★★★★</div>
-                                </div>
-                                <div class="item_feedbacks_item__text">Lorem ipsum dolor sit amet consectetur,
-                                    adipisicing elit. Veniam totam fugit quam omnis accusantium esse, ut odit, non
-                                    laudantium ullam, nam nesciunt? Vitae magnam cupiditate laboriosam, illum debitis
-                                    qui id!</div>
-                            </div>
-                            <div class="item_feedbacks_item__date">26.01.22</div>
-                        </div>
-                        <div class="item_feedbacks_item">
-                            <div class="item_feedbacks_item_container">
-                                <div class="item_feedbacks_item__row">
-                                    <div class="item_feedbacks_item__customer">Вадим</div>
-                                    <div class="item_feedbacks_item__mark">★★★★★</div>
-                                </div>
-                                <div class="item_feedbacks_item__text">Lorem ipsum dolor sit amet consectetur,
-                                    adipisicing elit. Veniam totam fugit quam omnis accusantium esse, ut odit, non
-                                    laudantium ullam, nam nesciunt? Vitae magnam cupiditate laboriosam, illum debitis
-                                    qui id!</div>
-                            </div>
-                            <div class="item_feedbacks_item__date">26.01.22</div>
-                        </div>
+                            <?php } ?>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -124,6 +116,24 @@
         if (counter.value < maxCount) {
             counter.value++;
         }
+    });
+
+    let stars = document.querySelectorAll('.add_feedback__rate_item');
+    let rate = document.getElementById('rate');
+
+    stars.forEach(el => {
+        el.addEventListener('click', () => {
+            for (let i = 0; i < stars.length; i++) {
+                stars[i].classList.remove('clicked');
+            }
+            for (let i = 0; i < stars.length; i++) {
+                stars[i].classList.add('clicked');
+                if (el == stars[i]) {
+                    rate.value = i + 1;
+                    break;
+                }
+            }
+        });
     });
 
 </script>

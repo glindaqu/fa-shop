@@ -86,7 +86,28 @@ class Database
         $st->execute();
         $result = $st->get_result();
         $arr = [];
-        while ($item = $result->fetch_assoc()){
+        while ($item = $result->fetch_assoc()) {
+            $arr[] = $item;
+        }
+        return count($arr) == 0 ? null : $arr;
+    }
+
+    # region feedback
+    function add_feedback(int $item_id, int $rate, string $text): void
+    {
+        $st = $this->db->prepare('INSERT INTO feedback (user_id, item_id, content, rate) VALUES (?, ?, ?, ?)');
+        $st->bind_param('iisi', $_COOKIE['client_id'], $item_id, $text, $rate);
+        $st->execute();
+    }
+
+    function get_feedback_by_item(int $item_id): ?array
+    {
+        $st = $this->db->prepare('SELECT * FROM feedback WHERE item_id = ?');
+        $st->bind_param('i', $item_id);
+        $st->execute();
+        $result = $st->get_result();
+        $arr = [];
+        while ($item = $result->fetch_assoc()) {
             $arr[] = $item;
         }
         return count($arr) == 0 ? null : $arr;

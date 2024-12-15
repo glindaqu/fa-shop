@@ -35,7 +35,6 @@ class Router
                 $params[explode("=", $param_str)[0]] = explode("=", $param_str)[1];
             }
         }
-        echo $this->route_dump();
 
         $this->navigate($params);
     }

@@ -15,7 +15,7 @@ class CatalogView extends View
         echo $content;
     }
 
-    public function item(array $item): void
+    public function item(array $item, ?array $feedback, float $rate): void
     {
         ob_start();
         require $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';

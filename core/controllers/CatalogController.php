@@ -1,5 +1,7 @@
 <?php
 
+use function PHPSTORM_META\map;
+
 require_once $_SERVER['DOCUMENT_ROOT'] . "/core/views/CatalogView.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/core/Controller.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/core/Database.php";
@@ -36,10 +38,24 @@ class CatalogController extends Controller
             die('item не найден');
         }
 
-        $this->view->item($item);   
+        $feedback = $this->db->get_feedback_by_item($id);
+        $rate = 0;
+
+        if ($feedback) {
+            $rate = array_sum(array_column($feedback, 'rate')) / count($feedback);
+            $rate = round($rate, 1);
+
+            foreach ($feedback as &$f) {
+                $client = $this->db->get_client($f['user_id'], null, null);
+                $f['username'] = $client['email']; 
+            }
+        }
+
+        $this->view->item($item, $feedback, $rate);
     }
 
-    public function add_to_cart(): void {
+    public function add_to_cart(): void
+    {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             die();
         }
@@ -51,5 +67,19 @@ class CatalogController extends Controller
 
         header('location: http://fa-shop-app/catalog');
         exit;
+    }
+
+    public function add_feedback(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            die();
+        }
+        $content = $_POST['text'];
+        $rate = $_POST['rate'];
+        $item = $_POST['item_id'];
+
+        $this->db->add_feedback($item, $rate, $content);
+
+        header("location: http://fa-shop-app/catalog/item/id=$item");
     }
 }
