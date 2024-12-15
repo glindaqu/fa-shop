@@ -36,7 +36,30 @@ class AuthorizeController extends Controller
 
     public function register(): void
     {
-        $this->view->register();
+        switch ($_SERVER['REQUEST_METHOD']) {
+            case 'POST':
+                if ($_POST['password'] !== $_POST['password_again']) {
+                    die('Пароли не совпеадают');
+                }
+                $this->db->insert_client($_POST['email'], $_POST['password']);
+                $client = $this->db->get_client(null, $_POST['email'], $_POST['password']);
+                if (!$client) {
+                    $this->view->error();
+                    exit;
+                }
+                setcookie('client_id', $client['id'], time() + 12 * 60 * 60, '/');
+                header('location: http://fa-shop-app/catalog/index');
+                exit;
+            default:
+                $this->view->register();
+                break;
+        }
+    }
+
+    public static function logout(): void {
+        setcookie('client_id', '', -1, '/');
+        unset($_COOKIE['client_id']);
+        header('location: http://fa-shop-app/');
     }
 
     public static function has_auth(): bool
